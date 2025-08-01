@@ -30,8 +30,7 @@
 - **Sensors:**  
   - Keyboard (Entry of symptoms, findings, patient answers), CSV file reader
 ### Problem to solve
-
-
+The main problem that we are trying to tackle is to get a sense of how volitile Amazon has been since its begining, 
 **Background:**  
 
 - Probablistic modeling is appropriate for this problem because accurate modeling can allow us to not
