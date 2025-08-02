@@ -96,10 +96,12 @@ v      v      v               v
 ### 3-3. Describe your process for calculating parameters in your model. That is, if you wish to find the CPTs, provide formulas as to how you computed them. If you used algorithms in class, just mention them.
 
   - We have to guess when the market(Amazon stock price) is in a high or low regime.
-
+  $$P(X = x | \text{Pa}(X) = \mathbf{p}) = \frac{\mathbb{E}[\text{count}(X = x, \text{Pa}(X) = \mathbf{p})]}{\mathbb{E}[\text{count}(\text{Pa}(X) = \mathbf{p})]}$$
   - We only see the prices, which are influenced by whether the market is high or low.
+    $$P(A = a) = \frac{\mathbb{E}[\text{count}(A = a)]}{T}$$
 
   - The market tends to stay in the same regime for a while, but sometimes switches—and the model is built to capture just that pattern. This applies to Markov property where it reflects realistic persistence and switching between regimes.
+    $$P(B = 1 | A = 0) = \frac{\mathbb{E}[\text{count}(B = 1, A = 0)]}{\mathbb{E}[\text{count}(A = 0)]} \quad , \quad P(B = 0 | A = 0) = \frac{\mathbb{E}[\text{count}(B = 0, A = 0)]}{\mathbb{E}[\text{count}(A = 0)]}$$
 
 ### 3-4. Library Usage, References
   - We implemented training and inference routines in pure Python and did not use external libraries for HMMs.
