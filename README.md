@@ -103,14 +103,19 @@ v      v      v               v
 
 ### 3- 4. Library Usage, References
   - We implemented training and inference routines in pure Python and did not use external libraries for HMMs.
+The librarys we did use were :
+  - Numpy:
+    The purpose of this library is to perform operations on arrays and matrices,
+    we used this to manipulate or matrices and values.
+  
+  - Pandas:
+   The purpose is to manipulate and analyze data frames particulary rows and         columns. This is percisely what we used it for to import our data and             manipulate it in a way that was useful and readable.
 
-If you used an HMM library, cite here:
+  - Scikit-learn:
+    This library is used to evaluate models. We used this to check the efficentcy     of our model.
+    
 
-pgmpy documentation
 
-(Feel free to expand the above as you include more variables, model extensions, or libraries!)
-
-## 4. Train your model! 
 ## 4. Train your model!
 
 Below is the source code for the Viterbi algorithm used to decode the most probable sequence of hidden states in our HMM:
@@ -172,6 +177,9 @@ usage: used it to provide functions to evaluate our model
 
 dbell3. (n.d.). DBELL3/CSE-150-proj-1: Project 1. GitHub. https://github.com/dbell3/CSE-150-Proj-1 
 3.4. metrics and scoring: Quantifying the quality of predictions. scikit. (n.d.). https://scikit-learn.org/stable/modules/model_evaluation.html 
+https://numpy.org/doc/
+https://scikit-learn.org/0.21/documentation.html
+https://pandas.pydata.org/docs/
 
 ### 6-2. Generative AI Usage
 We used generative AI platforms to assist throughout our project:
@@ -188,4 +196,3 @@ We used generative AI platforms to assist throughout our project:
   Below are the examples:
   ![GenAIUsageExample1](GenAIUsageExample1.png)
   ![GenAIUsageExample2](GenAIUsageExample2.png)
-  
