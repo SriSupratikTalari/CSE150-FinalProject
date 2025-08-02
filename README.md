@@ -101,18 +101,18 @@ v      v      v               v
 
   - The market tends to stay in the same regime for a while, but sometimes switches—and the model is built to capture just that pattern. This applies to Markov property where it reflects realistic persistence and switching between regimes.
 
-### 3- 4. Library Usage, References
+### 3-4. Library Usage, References
   - We implemented training and inference routines in pure Python and did not use external libraries for HMMs.
 The librarys we did use were :
-  - Numpy:
-    The purpose of this library is to perform operations on arrays and matrices,
-    we used this to manipulate or matrices and values.
+    - Numpy:
+      The purpose of this library is to perform operations on arrays and matrices,
+      we used this to manipulate or matrices and values.
   
-  - Pandas:
-   The purpose is to manipulate and analyze data frames particulary rows and         columns. This is percisely what we used it for to import our data and             manipulate it in a way that was useful and readable.
+    - Pandas:
+     The purpose is to manipulate and analyze data frames particulary rows and         columns. This is percisely what we used it for to import our data and             manipulate it in a way that was useful and readable.
 
-  - Scikit-learn:
-    This library is used to evaluate models. We used this to check the efficentcy     of our model.
+    - Scikit-learn:
+      This library is used to evaluate models. We used this to check the efficentcy     of our model.
     
 
 
@@ -195,4 +195,5 @@ We used generative AI platforms to assist throughout our project:
 
   Below are the examples:
   ![GenAIUsageExample1](GenAIUsageExample1.png)
+  
   ![GenAIUsageExample2](GenAIUsageExample2.png)
