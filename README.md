@@ -116,8 +116,55 @@ The librarys we did use were :
     
 
 
-## 4. Train your model! 
+## 4. Train your model!
 
+Below is the source code for the Viterbi algorithm used to decode the most probable sequence of hidden states in our HMM:
+
+```python
+def viterbi_algorithm(obs, states, start_prob, trans_prob, emit_prob):
+    """
+    obs: list or array of observations (as integer indices)
+    states: list of state names or values
+    start_prob: numpy array of shape (N,)
+    trans_prob: numpy array of shape (N,N)
+    emit_prob: numpy array of shape (N,M)
+
+    Returns:
+        best_path: list of most likely states (by label, not index)
+        delta: np.ndarray of shape (T, N), max probability at each state, each t
+        psi: np.ndarray of shape (T, N), backpointer for optimal path
+    """
+    N = len(states)
+    T = len(obs)
+
+    delta = np.zeros((T, N))
+    psi = np.zeros((T, N), dtype=int)
+
+    # Initialization
+    delta[0, :] = start_prob * emit_prob[:, obs[0]]
+    psi[0, :] = 0
+
+    # Recursion
+    for t in range(1, T):
+        for j in range(N):
+            seq_probs = delta[t-1, :] * trans_prob[:, j]
+            psi[t, j] = np.argmax(seq_probs)
+            delta[t, j] = np.max(seq_probs) * emit_prob[j, obs[t]]
+
+    # Termination
+    best_last_state = np.argmax(delta[T-1, :])
+    best_path_idx = np.zeros(T, dtype=int)
+    best_path_idx[T-1] = best_last_state
+
+    # Path backtracking
+    for t in range(T-2, -1, -1):
+        best_path_idx[t] = psi[t+1, best_path_idx[t+1]]
+
+    # Convert indices to state labels
+    best_path = [states[i] for i in best_path_idx]
+
+    return best_path, delta, psi
+```
 ## 5. Conclusion/Results
 
 
@@ -135,7 +182,16 @@ https://scikit-learn.org/0.21/documentation.html
 https://pandas.pydata.org/docs/
 
 ### 6-2. Generative AI Usage
+We used generative AI platforms to assist throughout our project:
 
-https://chatgpt.com/?model=auto 
-explanation: We mainly used ChatGpt for debugging and interpretation of our results
+  - ChatGPT (chat.openai.com):
+    - Debugging Python code.
+    - Clarifying function logic.
+    - Interpreting model results and performance.
+    - Drafting documentation and Markdown formatting.
+  - Perplexity AI (perplexity.ai):
+    - We used Perplexity AI to ask specific questions about correct Markdown syntax and grammar while writing our documentation.
+    - Additionally, we used it to generate a diagram image illustrating our model structure.
 
+  Below are the examples:
+  ![GenAIUsageExample1](GenAIUsageExample1.png)
