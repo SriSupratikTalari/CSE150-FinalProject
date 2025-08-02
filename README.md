@@ -36,6 +36,7 @@
   - Screen Display: Outputs model predictions, inferred market regimes, or visual analytics to the user (e.g., via report, terminal, or dashboard).
 - **Sensors:**  
   - CSV File Reader: Loads and reads historical stock data (e.g., price, volume, etc.)
+  - Keyboard (Entry of symptoms, findings, patient answers)
 ### 2-2. What problem are you solving? Why does probabilistic modeling make sense to tackle this problem?
   - We aim to quantitatively detect and analyze regime changes in Amazon's stock price history, such as shifts between "quiet" and "volatile" periods, by inferring a sequence of unobserved market states from observable price data.
   - The true market regime ("high" vs. "low" volatility) is not directly observable—we only see the resulting prices, which are influenced by hidden factors. Because the true market regime is not directly observable and observed prices can be noisy, probabilistic models like HMMs allow us to infer hidden states from data, handle uncertainty, and capture changes over time.
@@ -99,80 +100,6 @@ v      v      v               v
   - We only see the prices, which are influenced by whether the market is high or low.
 
   - The market tends to stay in the same regime for a while, but sometimes switches—and the model is built to capture just that pattern. This applies to Markov property where it reflects realistic persistence and switching between regimes.
-  
-1. General case: variable with parents
-
-Let \( X \) be a variable with parent set \( \mathrm{Pa}(X) \). Then the CPT entry is:
-\[
-P(X = x \mid \mathrm{Pa}(X) = \mathbf{p})
-=
-\frac{
-\mathbb{E}\big[\text{count}(X = x, \mathrm{Pa}(X) = \mathbf{p})\big]
-}{
-\mathbb{E}\big[\text{count}(\mathrm{Pa}(X) = \mathbf{p})\big]
-}
-\]
-- Numerator: expected joint count of \( X=x \) and its parents \( \mathrm{Pa}(X)=\mathbf{p} \) (from the E-step posterior).  
-- Denominator: expected count of the parents taking value \( \mathbf{p} \), i.e., sum over all \( x \) of the numerator.
-
-2. Root variable (no parents)
-
-If \( A \) has no parents, its marginal is:
-\[
-P(A = a)
-=
-\frac{
-\mathbb{E}\big[\text{count}(A = a)\big]
-}{T}
-\]
-where \( T \) is the total number of data cases (or total weight if using fractional counts).
-
-3. Binary example
-
-Suppose \( A, B \in \{0,1\} \) and \( B \) has parent \( A \). Then:
-\[
-P(B=1 \mid A=0)
-=
-\frac{
-\mathbb{E}\big[\text{count}(B=1, A=0)\big]
-}{
-\mathbb{E}\big[\text{count}(A=0)\big]
-}
-\quad,\quad
-P(B=0 \mid A=0)
-=
-\frac{
-\mathbb{E}\big[\text{count}(B=0, A=0)\big]
-}{
-\mathbb{E}\big[\text{count}(A=0)\big]
-}
-\]
-(and similarly conditioned on \( A=1 \)).
-
-4. Additive (Laplace) smoothing (if used)
-
-Let \( K \) be the number of possible values of \( X \) (the size of its domain), and \( \alpha > 0 \) the smoothing constant:
-\[
-P(X = x \mid \mathrm{Pa}(X) = \mathbf{p})
-=
-\frac{
-\mathbb{E}\big[\text{count}(X = x, \mathrm{Pa}(X) = \mathbf{p})\big] + \alpha
-}{
-\mathbb{E}\big[\text{count}(\mathrm{Pa}(X) = \mathbf{p})\big] + \alpha K
-}
-\]
-
-5. Connection to the E-step
-
-In the E-step, for each data case \( t \), you compute posterior probabilities of hidden variables given the observed data and current CPTs. Those posterior probabilities are used to form expected counts like:
-\[
-\mathbb{E}[\text{count}(X = x, \mathrm{Pa}(X) = \mathbf{p})]
-=
-\sum_{t=1}^T P(X = x, \mathrm{Pa}(X) = \mathbf{p} \mid \text{observed at } t)
-\]
-i.e., you accumulate the probability that \( X=x \) and its parents equal \( \mathbf{p} \) under the current model for each example.
-
-
 
 ### 3- 4. Library Usage, References
   - We implemented training and inference routines in pure Python and did not use external libraries for HMMs.
@@ -257,3 +184,7 @@ We used generative AI platforms to assist throughout our project:
   - Perplexity AI (perplexity.ai):
     - We used Perplexity AI to ask specific questions about correct Markdown syntax and grammar while writing our documentation.
     - Additionally, we used it to generate a diagram image illustrating our model structure.
+
+  Below are the examples:
+  ![GenAIUsageExample1](GenAIUsageExample1.png)
+  
