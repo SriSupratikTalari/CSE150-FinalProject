@@ -174,6 +174,13 @@ dbell3. (n.d.). DBELL3/CSE-150-proj-1: Project 1. GitHub. https://github.com/dbe
 3.4. metrics and scoring: Quantifying the quality of predictions. scikit. (n.d.). https://scikit-learn.org/stable/modules/model_evaluation.html 
 
 ### 6-2. Generative AI Usage
+We used generative AI platforms to assist throughout our project:
 
-https://chatgpt.com/?model=auto 
-explanation: We mainly used ChatGpt for debugging and interpretation of our results
+  - ChatGPT (chat.openai.com):
+    - Debugging Python code.
+    - Clarifying function logic.
+    - Interpreting model results and performance.
+    - Drafting documentation and Markdown formatting.
+  - Perplexity AI (perplexity.ai):
+    - We used Perplexity AI to ask specific questions about correct Markdown syntax and grammar while writing our documentation.
+    - Additionally, we used it to generate a diagram image illustrating our model structure.
