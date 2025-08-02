@@ -110,7 +110,6 @@ pgmpy documentation
 
 (Feel free to expand the above as you include more variables, model extensions, or libraries!)
 
-## 4. Train your model! 
 ## 4. Train your model!
 
 Below is the source code for the Viterbi algorithm used to decode the most probable sequence of hidden states in our HMM:
