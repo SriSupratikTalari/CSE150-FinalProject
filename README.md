@@ -8,12 +8,12 @@
   - High (Highest price of Amazon for that day)
   - Close (Closing price of Amazon for that day)
 - **Task:**
-  - The purpose of using this dataset is trying to find out how many times the Amazon Stock price was greater than its overall average price in its entire history.
+  - We are trying to find how volitile Amazon has been since its birth based one how many times it changed between Bullish and Bearish.
 - **Relevance:**
   - This data is relevent to probabilistic modeling because we are using it to create a Markov Model and performing Viterbi algorithm to find the most likely sequence of our Hidden State.
 - **Preprocessing:**
-  - Filter our dataset to only only include the High Price and Closing Price
-  - One Hot encode all variables to make easy predictions
+  - Filter our dataset to only only include the necessary columns which is Close and Difference.
+  - We one hot encoded close to 0(Bearish) 1(Bullish) if Close is greater than the Open price of that day. Difference is one hot encoded to 0 (Close-Open<0) and 1(Close-Open>0). 
 
 ### 1-2. A couple things to consider:
 - **How big is the dataset? Is it reasonably processable?**
@@ -37,7 +37,7 @@
 - **Sensors:**  
   - CSV File Reader: Loads and reads historical stock data (e.g., price, volume, etc.)
 ### 2-2. What problem are you solving? Why does probabilistic modeling make sense to tackle this problem?
-  - We aim to quantitatively detect and analyze regime changes in Amazon's stock price history, such as shifts between "quiet" and "volatile" periods, by inferring a sequence of unobserved market states from observable price data.
+  - We are trying 
   - The true market regime ("high" vs. "low" volatility) is not directly observable—we only see the resulting prices, which are influenced by hidden factors. Because the true market regime is not directly observable and observed prices can be noisy, probabilistic models like HMMs allow us to infer hidden states from data, handle uncertainty, and capture changes over time.
 
 ### 2-3. Give an overview of related work for approaches to solve this problem. What models could you potentially use, or has been used before to tackle this type of problem? What are the other approaches' benefits or drawbacks?
@@ -234,7 +234,23 @@ def viterbi_algorithm(obs, states, start_prob, trans_prob, emit_prob):
     return best_path, delta, psi
 ```
 ## 5. Conclusion/Results
+### Results
+- **Accuracy**: 0.5069 
+- **Precision**: 0.5758
+- **Recall**: 0.0544  
+- **F1 Score**: 0.0993  
 
+### Confusion Matrix
+
+|               | Predicted: No | Predicted: Yes |
+|---------------|---------------|----------------|
+| Actual: No    | 3352            | 140             |
+| Actual: Yes   | 3305            | 190            |
+
+### Interpretation
+Looking at the accuracy we see that the model is as good as randomly guessing. Looking at precision we can see that our model rarely predicts a bullish outcome and when it does it is right about 57% of the time. Looking at Recall we can see that our model rarely predicts bullish mostlikey do to the fact that we have more 0's than 1's. Our F1 score is also very poor which indicates there is huge imbalance of between 0 and 1. 
+### Improvements 
+Some improvements that we could make to have a better model is use a different columns for our oberservation layer of our MM. Another thing that we can do is try implementing a Forward-Backward algorithm to find the most likely hidden state. 
 
 
 ## 6. Additional Notes
