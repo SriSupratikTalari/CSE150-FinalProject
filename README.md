@@ -38,9 +38,15 @@
   - CSV File Reader: Loads and reads historical stock data (e.g., price, volume, etc.)
   - Keyboard (Entry of symptoms, findings, patient answers)
 ### 2-2. What problem are you solving? Why does probabilistic modeling make sense to tackle this problem?
-  - We are trying 
-  - The true market regime ("high" vs. "low" volatility) is not directly observable—we only see the resulting prices, which are influenced by hidden factors. Because the true market regime is not directly observable and observed prices can be noisy, probabilistic models like HMMs allow us to infer hidden states from data, handle uncertainty, and capture changes over time.
+  - The true market regime (bullish or bearish) is a hidden variable—we can observe prices, but not the underlying “state of the market.”
 
+  - Stock price changes are noisy and stochastic; the same observed pattern might result from multiple hidden causes.
+
+  - A Hidden Markov Model (HMM) allows us to model the uncertainty in inferring these regimes from the sequence of observations.
+
+  - HMMs let us compute the most probable sequence of underlying states (using the Viterbi algorithm) and provide confidence estimates for these inferences.
+
+  - Probabilistic modeling is well-suited for this problem because it can quantify uncertainty, capture transitions between regimes, and leverage both the persistence of states and the variability in observations.
 ### 2-3. Give an overview of related work for approaches to solve this problem. What models could you potentially use, or has been used before to tackle this type of problem? What are the other approaches' benefits or drawbacks?
   - **Related Work:**  
     - Hidden Markov Models (HMMs): Frequently used in finance to model regime changes, e.g., volatility shifts, "bull" vs. "bear" markets, or jumps in statistical properties of price series.
