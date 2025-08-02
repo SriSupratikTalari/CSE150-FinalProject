@@ -187,4 +187,5 @@ We used generative AI platforms to assist throughout our project:
 
   Below are the examples:
   ![GenAIUsageExample1](GenAIUsageExample1.png)
+  ![GenAIUsageExample2](GenAIUsageExample2.png)
   
