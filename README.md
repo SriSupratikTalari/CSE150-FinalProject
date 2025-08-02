@@ -199,7 +199,7 @@ Some improvements that we could make to have a better model is use a different c
 
 
 ## 6. Additional Notes
-###imported libraries: 
+### imported libraries: 
 -sklearn.metrics: used it to provide functions to evaluate our model 
 
 ### 6-1. Citations
